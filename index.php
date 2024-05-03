@@ -1,23 +1,50 @@
-<?php
 
-$datos = array(
-    ["ID", "DESCRIPCION", "EXISTENTES", "PRECIO"],
-    ["ID" => "CDI001R", "TENIS", 2, 300],
-    ["ID" => "CDI002R", "PANTALON", 5, 250],
-    ["ID" => "CDI003R", "BALON", 10, 400],
-    ["ID" => "CDI004R", "CALCETAS", 2, 30],
-    ["ID" => "CDI005R", "VENDAS", 5, 25],
-    ["ID" => "CDI006R", "GUANTES", 10, 400],
-);
+<?php
+$datos = [
+    "ID" => ["CDI001", "CDI002", "CDI003", "CDI004", "CDI005"],
+    "NOMBRE" => ["SHORT", "BERMUDA", "CALCETAS", "PLAYERA", "PANTALON"],
+    "COLOR" => ["AZUL", "ROJO", "AMARILLO","VERDE","ROSA"],
+    "PRECIO" => [150, 235, 18.45, 179, 525],
+    "TOTALES" => [] 
+];
+
+foreach ($datos["PRECIO"] as $index => $precio) {
+    $datos["TOTALES"][$index] = $precio; 
+}
+
+$precioTotal = 0;
+foreach ($datos["PRECIO"] as $precio) {
+    $precioTotal += $precio;
+}
+
+$datos["TOTALES"][] = $precioTotal; 
 
 echo "<table>";
-foreach ($datos as $fila) {
+
+
+echo "<tr>";
+foreach ($datos as $key => $value) {
+    echo "<th>" . $key . "</th>";
+}
+echo "</tr>";
+
+foreach ($datos["ID"] as $index => $id) {
     echo "<tr>";
-    foreach ($fila as $dato) {
-        echo "<td>" . $dato . "</td>";
-    }
+    echo "<td>" . $id . "</td>";
+    echo "<th>" . $datos["NOMBRE"][$index] . " </th>";
+    echo "<td>" . $datos["COLOR"][$index] . " </td>";
+    echo "<td>" . $datos["PRECIO"][$index] . "</td>";
+    echo "<td>" . $datos["TOTALES"][$index] . "</td>"; 
     echo "</tr>";
 }
+
+echo "<tr>";
+echo "<td></td>";
+echo "<td></td>"; 
+echo "<td></td>"; 
+echo "<td>Total:</td>";
+echo "<td>" . $datos["TOTALES"][count($datos["TOTALES"]) - 1] . "</td>";
+echo "</tr>";
 
 echo "</table>";
 
