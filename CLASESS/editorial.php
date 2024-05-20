@@ -14,4 +14,5 @@ class Editorial {
     $this->telefono = $telefono;
     $this->correoElectronico = $correoElectronico;
   }
+}
 ?>
